@@ -175,6 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 3rd party providers
+        \App\Providers\RepositoryServiceProvider::class,
+        // Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class,
+
     ],
 
     /*

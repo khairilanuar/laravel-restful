@@ -12,6 +12,7 @@
         "bepsvpt/secure-headers": "^5.5",
         "fideloper/proxy": "^4.0",
         "friendsofphp/php-cs-fixer": "^2.15",
+        "kalnoy/nestedset": "^5.0",
         "laravel/framework": "^6.0",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0",
@@ -65,8 +66,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan version:refresh"
+            "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
