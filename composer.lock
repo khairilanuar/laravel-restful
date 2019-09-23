@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe8d50ddb98bf7e7cf20b126c277e9a7",
+    "content-hash": "49728a97fbbab71b5acdd4e041c32b55",
     "packages": [
         {
             "name": "bepsvpt/secure-headers",
@@ -5324,9 +5324,9 @@
             "authors": [
                 {
                     "name": "Brian",
-                    "role": "Lead",
                     "email": "scaturrob@gmail.com",
-                    "homepage": "http://brianscaturro.com"
+                    "homepage": "http://brianscaturro.com",
+                    "role": "Lead"
                 }
             ],
             "description": "A dependable php environment",
@@ -8079,6 +8079,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
+        "ext-bcmath": "*",
         "php": "^7.2"
     },
     "platform-dev": []
