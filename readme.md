@@ -34,8 +34,9 @@ For full listing of 3rd party packages used in this project please look in `comp
 1. `php artisan key:generate`
 1. (optional) customize configuration (in `config/` directory)
 1. set your database connection parameter in `.env`
-1. `php artisan migrate --seed`
+1. `php artisan migrate`
 1. `php artisan passport:install`
+1. `php artisan db:seed`
 
 ## Contributing
 Please follow standard Laravel coding style, check your code with pre-defined composer scripts:

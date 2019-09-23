@@ -1,13 +1,6 @@
 <?php
 
 return [
-    // Application captcha specific settings
-    'captcha' => [
-        // Whether the registration captcha is on or off
-        'contact' => env('CONTACT_CAPTCHA_STATUS', false),
-        'registration' => env('REGISTRATION_CAPTCHA_STATUS', false),
-    ],
-
     // Whether or not registration is enabled
     'registration' => env('ENABLE_REGISTRATION', true),
 
