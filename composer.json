@@ -7,23 +7,34 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/khairilanuar/crypton.git"
+        }
+    ],
     "require": {
-        "ext-bcmath": "*",
         "php": "^7.2",
+        "ext-bcmath": "*",
+        "barryvdh/laravel-snappy": "^0.4.5",
         "bepsvpt/secure-headers": "^5.5",
         "fideloper/proxy": "^4.0",
         "friendsofphp/php-cs-fixer": "^2.15",
+        "h4cc/wkhtmltoimage-amd64": "^0.12.4",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
         "kalnoy/nestedset": "^5.0",
         "laravel/framework": "^6.0",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "owen-it/laravel-auditing": "^9.3",
         "pragmarx/version": "^1.0",
         "predis/predis": "^1.1",
         "prettus/l5-repository": "^2.6",
         "spatie/laravel-cors": "^1.6",
         "spatie/laravel-permission": "^3.0",
-        "squizlabs/php_codesniffer": "^3.4"
+        "squizlabs/php_codesniffer": "^3.4",
+        "tzsk/crypton": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

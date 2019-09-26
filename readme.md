@@ -12,10 +12,12 @@ This project is pre-installed (and pre-configured) with some useful and famous c
 - Official OAuth2 by Laravel Passport
 - User management by [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
 - Repository pattern by [Prettus](https://github.com/andersao/l5-repository)
+- Request encryption by [Crypton](https://github.com/tzsk/crypton) see [laravel-crypton](https://github.com/tzsk/laravel-crypton) for Vue / JS adapter
 - CSP and Secure headers by [bepsvpt/secure-headers](https://github.com/BePsvPT/secure-headers)
 - CORS management by [spatie/laravel-cors](https://github.com/spatie/laravel-cors)
 - Audit trail management by [owen-it/laravel-auditing](https://github.com/owen-it/laravel-auditing)
 - Semantic versioning by [Pragmarx](https://github.com/antonioribeiro/version)
+- Laravel Excel by [Maatwebsite](https://github.com/maatwebsite/Laravel-Excel)
 
 Development Packages:
 
@@ -27,6 +29,9 @@ For full listing of 3rd party packages used in this project please look in `comp
 
 
 ## Getting Started `(WIP)`
+
+#### Pre-requisites `(WIP)`:
+- libXrender wkhtmltopdf
 
 1. clone this repository
 1. perform `composer install`
