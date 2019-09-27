@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Entities\Permission;
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\PermissionRepository;
+use App\Entities\Permission;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class PermissionRepositoryEloquent.
@@ -24,6 +24,7 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
 
     /**
      * Boot up the repository, pushing criteria.
+     *
      * @throws
      */
     public function boot()
@@ -33,10 +34,12 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
 
     /**
      * @param array $data
+     *
      * @throws
+     *
      * @return Permission
      */
-    public function create(array $data) : Permission
+    public function create(array $data): Permission
     {
         return \DB::transaction(function () use ($data) {
             $permission = new Permission($data);
@@ -54,10 +57,12 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
     /**
      * @param array $data
      * @param $id
+     *
      * @throws
+     *
      * @return Permission
      */
-    public function update(array $data, $id) : Permission
+    public function update(array $data, $id): Permission
     {
         return \DB::transaction(function () use ($id, $data) {
             if ($permission = parent::update($data, $id)) {

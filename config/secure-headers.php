@@ -72,11 +72,11 @@ return [
      * Reference: https://w3c.github.io/webappsec-clear-site-data/
      */
     'clear-site-data' => [
-        'enable' => false,
-        'all' => false,
-        'cache' => true,
-        'cookies' => true,
-        'storage' => true,
+        'enable'            => false,
+        'all'               => false,
+        'cache'             => true,
+        'cookies'           => true,
+        'storage'           => true,
         'executionContexts' => true,
     ],
 
@@ -87,10 +87,10 @@ return [
      * Please ensure your website had set up ssl/tls before enable hsts.
      */
     'hsts' => [
-        'enable' => false,
-        'max-age' => 15552000,
+        'enable'              => false,
+        'max-age'             => 15552000,
         'include-sub-domains' => false,
-        'preload' => true,
+        'preload'             => true,
     ],
 
     /*
@@ -99,9 +99,9 @@ return [
      * Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expect-CT
      */
     'expect-ct' => [
-        'enable' => false,
-        'max-age' => 2147483648,
-        'enforce' => false,
+        'enable'     => false,
+        'max-age'    => 2147483648,
+        'enforce'    => false,
         'report-uri' => null,
     ],
 
@@ -117,9 +117,9 @@ return [
         ],
 
         'include-sub-domains' => false,
-        'max-age' => 15552000,
-        'report-only' => false,
-        'report-uri' => null,
+        'max-age'             => 15552000,
+        'report-only'         => false,
+        'report-uri'          => null,
     ],
 
     /*
@@ -140,40 +140,40 @@ return [
          */
 
         'accelerometer' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'ambient-light-sensor' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'autoplay' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'camera' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
@@ -200,110 +200,110 @@ return [
         ],*/
 
         'encrypted-media' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'fullscreen' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'geolocation' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'gyroscope' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'magnetometer' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'microphone' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'midi' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'payment' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'picture-in-picture' => [
-            'none' => false,
-            '*' => true,
-            'self' => false,
-            'src' => false,
+            'none'  => false,
+            '*'     => true,
+            'self'  => false,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'speaker' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
         ],
 
         'sync-xhr' => [
-            'none' => false,
-            '*' => true,
-            'self' => false,
-            'src' => false,
+            'none'  => false,
+            '*'     => true,
+            'self'  => false,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
@@ -320,10 +320,10 @@ return [
         ],*/
 
         'vr' => [
-            'none' => false,
-            '*' => false,
-            'self' => true,
-            'src' => false,
+            'none'  => false,
+            '*'     => false,
+            'self'  => true,
+            'src'   => false,
             'allow' => [
                 // 'url',
             ],
@@ -342,9 +342,9 @@ return [
     'custom-csp' => null,
 
     'csp' => [
-        'report-only' => false,
-        'report-uri' => null,
-        'block-all-mixed-content' => false,
+        'report-only'               => false,
+        'report-uri'                => null,
+        'block-all-mixed-content'   => false,
         'upgrade-insecure-requests' => false,
 
         /*
@@ -355,7 +355,7 @@ return [
          */
         'script-src' => [
             'allow' => [
-                'https://cdnjs.cloudflare.com'
+                'https://cdnjs.cloudflare.com',
             ],
 
             'hashes' => [
@@ -372,10 +372,10 @@ return [
                 // 'https:',
             ],
 
-            'self' => true,
+            'self'          => true,
             'unsafe-inline' => true,
             //'unsafe-eval' => false, // TODO: find code depend on this fix it, and disable this directive
-            'strict-dynamic' => false,
+            'strict-dynamic'           => false,
             'unsafe-hashed-attributes' => false,
 
             // https://www.chromestatus.com/feature/5792234276388864
@@ -396,16 +396,15 @@ return [
             ],
 
             'nonces' => [
-                //
             ],
 
             'schemes' => [
                 // 'https:',
             ],
 
-            'self' => true,
-            'unsafe-inline' => true,
-            'report-sample' => true,
+            'self'                => true,
+            'unsafe-inline'       => true,
+            'report-sample'       => true,
             'add-generated-nonce' => false,
         ],
 
@@ -418,15 +417,12 @@ return [
         ],
 
         'default-src' => [
-            //
         ],
 
         'base-uri' => [
-            //
         ],
 
         'connect-src' => [
-            //
         ],
 
         'font-src' => [
@@ -442,27 +438,21 @@ return [
         ],
 
         'frame-ancestors' => [
-            //
         ],
 
         'frame-src' => [
-            //
         ],
 
         'manifest-src' => [
-            //
         ],
 
         'media-src' => [
-            //
         ],
 
         'object-src' => [
-            //
         ],
 
         'worker-src' => [
-            //
         ],
 
         'plugin-types' => [

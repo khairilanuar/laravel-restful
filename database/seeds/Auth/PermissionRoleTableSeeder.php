@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Entities\Role;
 use App\Entities\Permission;
+use App\Entities\Role;
+use Illuminate\Database\Seeder;
 
 /**
  * Class PermissionRoleTableSeeder.
@@ -14,7 +14,6 @@ class PermissionRoleTableSeeder extends Seeder
     /**
      * Run the database seed.
      *
-     * @return void
      * @throws
      */
     public function run()
@@ -41,8 +40,8 @@ class PermissionRoleTableSeeder extends Seeder
         // Create Permissions
         $core_permissions = [
             'access-backend' => 'Access Backend',
-            'access-module' => [
-                'label' => 'Modules',
+            'access-module'  => [
+                'label'    => 'Modules',
                 'children' => [
                     /*
                     'access-socso-generator' => [
@@ -62,30 +61,30 @@ class PermissionRoleTableSeeder extends Seeder
                         ]
                     ]
                     */
-                ]
+                ],
             ],
             'access-system' => [
-                'label' => 'Access System',
+                'label'    => 'Access System',
                 'children' => [
                     // access managements
                     'access-access' => [
-                        'label' => 'Access Management',
+                        'label'    => 'Access Management',
                         'children' => [
-                            'read-user' => 'Read User',
+                            'read-user'   => 'Read User',
                             'create-user' => 'Create/Update User',
                             'delete-user' => 'Delete User',
 
-                            'read-role' => 'Read Role',
+                            'read-role'   => 'Read Role',
                             'create-role' => 'Create/Update Role',
-                            'delete-role' => 'Delete Role'
-                        ]
+                            'delete-role' => 'Delete Role',
+                        ],
                     ],
                     'access-setting' => [
-                        'label' => 'Access Settings',
+                        'label'    => 'Access Settings',
                         'children' => [
-                        ]
+                        ],
                     ],
-                ]
+                ],
             ],
         ];
 
@@ -110,12 +109,12 @@ class PermissionRoleTableSeeder extends Seeder
                     'access-system', 'access-access',
                     'read-user', 'create-user', 'delete-user',
                     'read-role', 'create-role', 'delete-role',
-                    'access-setting'
+                    'access-setting',
                 ];
 
                 $attributes = [
-                    'name' => $permission,
-                    'label' => $label,
+                    'name'    => $permission,
+                    'label'   => $label,
                     'is_core' => true,
                     //'is_system' => in_array($permission, $system_permissions)
                 ];

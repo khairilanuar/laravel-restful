@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Repositories\PermissionRepository;
 use App\Entities\Permission;
-use Illuminate\Http\JsonResponse;
-use App\Validators\PermissionValidator;
-use Illuminate\Database\QueryException;
 use App\Http\Requests\PermissionCreateRequest;
 use App\Http\Requests\PermissionUpdateRequest;
+use App\Validators\PermissionValidator;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use App\Contracts\Repositories\PermissionRepository;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
@@ -33,7 +33,7 @@ class PermissionsController extends BaseController
      * RolesController constructor.
      *
      * @param PermissionRepository $repository
-     * @param PermissionValidator $validator
+     * @param PermissionValidator  $validator
      */
     public function __construct(PermissionRepository $repository, PermissionValidator $validator)
     {
@@ -74,6 +74,7 @@ class PermissionsController extends BaseController
      * Display the specified resource.
      *
      * @param Permission $permission
+     *
      * @return JsonResponse
      */
     public function show(Permission $permission)
@@ -84,8 +85,10 @@ class PermissionsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PermissionCreateRequest $request
+     * @param PermissionCreateRequest $request
+     *
      * @throws
+     *
      * @return JsonResponse
      */
     public function store(PermissionCreateRequest $request)
@@ -108,8 +111,10 @@ class PermissionsController extends BaseController
      * Update the specified resource in storage.
      *
      * @param PermissionUpdateRequest $request
-     * @param Permission $permission
+     * @param Permission              $permission
+     *
      * @throws
+     *
      * @return JsonResponse
      */
     public function update(PermissionUpdateRequest $request, Permission $permission)
@@ -132,6 +137,7 @@ class PermissionsController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param Permission $permission
+     *
      * @return JsonResponse
      */
     public function destroy(Permission $permission)

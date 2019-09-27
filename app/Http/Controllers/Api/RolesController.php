@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Repositories\RoleRepository;
 use App\Entities\Role;
-use App\Validators\RoleValidator;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Database\QueryException;
 use App\Http\Requests\RoleCreateRequest;
 use App\Http\Requests\RoleUpdateRequest;
-use App\Contracts\Repositories\RoleRepository;
+use App\Validators\RoleValidator;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -33,7 +33,7 @@ class RolesController extends BaseController
      * RolesController constructor.
      *
      * @param RoleRepository $repository
-     * @param RoleValidator $validator
+     * @param RoleValidator  $validator
      */
     public function __construct(RoleRepository $repository, RoleValidator $validator)
     {
@@ -71,6 +71,7 @@ class RolesController extends BaseController
      * Display the specified resource.
      *
      * @param Role $role
+     *
      * @return JsonResponse
      */
     public function show(Role $role)
@@ -81,8 +82,10 @@ class RolesController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  RoleCreateRequest $request
+     * @param RoleCreateRequest $request
+     *
      * @throws
+     *
      * @return JsonResponse
      */
     public function store(RoleCreateRequest $request)
@@ -105,8 +108,10 @@ class RolesController extends BaseController
      * Update the specified resource in storage.
      *
      * @param RoleUpdateRequest $request
-     * @param Role $role
+     * @param Role              $role
+     *
      * @throws
+     *
      * @return JsonResponse
      */
     public function update(RoleUpdateRequest $request, Role $role)
@@ -129,6 +134,7 @@ class RolesController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param Role $role
+     *
      * @return JsonResponse
      */
     public function destroy(Role $role)

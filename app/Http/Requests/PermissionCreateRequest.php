@@ -24,7 +24,6 @@ class PermissionCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

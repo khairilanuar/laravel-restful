@@ -7,7 +7,6 @@
 |
 */
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Repository Pagination Limit Default
@@ -15,7 +14,7 @@ return [
     |
     */
     'pagination' => [
-        'limit' => 15
+        'limit' => 15,
     ],
 
     /*
@@ -32,9 +31,9 @@ return [
     */
     'fractal'    => [
         'params'     => [
-            'include' => 'include'
+            'include' => 'include',
         ],
-        'serializer' => League\Fractal\Serializer\DataArraySerializer::class
+        'serializer' => League\Fractal\Serializer\DataArraySerializer::class,
     ],
 
     /*
@@ -83,7 +82,6 @@ return [
           |
           */
         'clean'      => [
-
             /*
               |--------------------------------------------------------------------------
               | Enable clear cache on repository changes
@@ -106,7 +104,7 @@ return [
                 'create' => true,
                 'update' => true,
                 'delete' => true,
-            ]
+            ],
         ],
 
         'params'     => [
@@ -119,7 +117,7 @@ return [
             | Ex: http://prettus.local/?search=lorem&skipCache=true
             |
             */
-            'skipCache' => 'skipCache'
+            'skipCache' => 'skipCache',
         ],
 
         /*
@@ -139,8 +137,8 @@ return [
        */
         'allowed'    => [
             'only'   => null,
-            'except' => null
-        ]
+            'except' => null,
+        ],
     ],
 
     /*
@@ -169,7 +167,7 @@ return [
         */
         'acceptedConditions' => [
             '=',
-            'like'
+            'like',
         ],
         /*
         |--------------------------------------------------------------------------
@@ -216,8 +214,8 @@ return [
             'orderBy'      => 'orderBy',
             'sortedBy'     => 'orderDir',
             'with'         => 'with',
-            'searchJoin'   => 'searchJoin'
-        ]
+            'searchJoin'   => 'searchJoin',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -226,19 +224,19 @@ return [
     |
     */
     'generator'  => [
-        'basePath'      => app()->path(),
-        'rootNamespace' => 'App\\',
+        'basePath'          => app()->path(),
+        'rootNamespace'     => 'App\\',
         'stubsOverridePath' => app()->path(),
-        'paths'         => [
-            'models' => 'Entities',
+        'paths'             => [
+            'models'       => 'Entities',
             'repositories' => 'Repositories\\Eloquent',
-            'interfaces' => 'Contracts\\Repositories',
+            'interfaces'   => 'Contracts\\Repositories',
             'transformers' => 'Transformers',
-            'presenters' => 'Presenters',
-            'validators' => 'Validators',
-            'controllers' => 'Http/Controllers',
-            'provider' => 'RepositoryServiceProvider',
-            'criteria' => 'Criteria',
-        ]
-    ]
+            'presenters'   => 'Presenters',
+            'validators'   => 'Validators',
+            'controllers'  => 'Http/Controllers',
+            'provider'     => 'RepositoryServiceProvider',
+            'criteria'     => 'Criteria',
+        ],
+    ],
 ];

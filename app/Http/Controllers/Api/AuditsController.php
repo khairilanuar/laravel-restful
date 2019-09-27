@@ -29,7 +29,7 @@ class AuditsController extends BaseController
      * RolesController constructor.
      *
      * @param AuditRepository $repository
-     * @param AuditValidator $validator
+     * @param AuditValidator  $validator
      */
     public function __construct(AuditRepository $repository, AuditValidator $validator)
     {
@@ -66,7 +66,6 @@ class AuditsController extends BaseController
             ->distinct('auditable_type')
             ->get(['auditable_type as text', 'auditable_type as value']);
 
-
         // users
         foreach (User::all() as $user) {
             $return['users'][] = ['text' => $user->full_name, 'value' => $user->id];
@@ -79,6 +78,7 @@ class AuditsController extends BaseController
      * Display the specified resource.
      *
      * @param Audit $audit
+     *
      * @return JsonResponse
      */
     public function show(Audit $audit)

@@ -7,7 +7,7 @@ return [
     // Table names for access tables
     'table_names' => [
         'password_histories' => 'password_histories',
-        'users' => 'users',
+        'users'              => 'users',
     ],
 
     // Configurations for the user

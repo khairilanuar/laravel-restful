@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Contracts\Repositories\UserRepository;
 use App\Entities\User;
-use App\Validators\UserValidator;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Database\QueryException;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Contracts\Repositories\UserRepository;
+use App\Validators\UserValidator;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -33,7 +33,7 @@ class UsersController extends BaseController
      * UsersController constructor.
      *
      * @param UserRepository $repository
-     * @param UserValidator $validator
+     * @param UserValidator  $validator
      */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
@@ -58,6 +58,7 @@ class UsersController extends BaseController
      * Display the specified resource.
      *
      * @param User $user
+     *
      * @return JsonResponse
      */
     public function show(User $user)
@@ -68,8 +69,10 @@ class UsersController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserCreateRequest $request
+     * @param UserCreateRequest $request
+     *
      * @throws
+     *
      * @return JsonResponse
      */
     public function store(UserCreateRequest $request)
@@ -92,8 +95,10 @@ class UsersController extends BaseController
      * Update the specified resource in storage.
      *
      * @param UserUpdateRequest $request
-     * @param User $user
+     * @param User              $user
+     *
      * @throws
+     *
      * @return JsonResponse
      */
     public function update(UserUpdateRequest $request, User $user)
@@ -116,6 +121,7 @@ class UsersController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param User $user
+     *
      * @return JsonResponse
      */
     public function destroy(User $user)
@@ -124,5 +130,4 @@ class UsersController extends BaseController
 
         return $this->sendSuccess($deleted, __('api.success_delete', ['name' => $this->name]));
     }
-
 }

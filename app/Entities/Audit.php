@@ -2,7 +2,6 @@
 
 namespace App\Entities;
 
-use App\Entities\User;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -23,7 +22,7 @@ class Audit extends Model implements Transformable
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault([
-            'full_name' => '(System)'
+            'full_name' => '(System)',
         ]);
     }
 

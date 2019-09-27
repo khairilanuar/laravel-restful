@@ -31,8 +31,8 @@ Route::middleware(['auth:api'])->as('api.')->group(function () {
 
     // api/
     Route::apiResources([
-        'role' => 'Api\RolesController',
-        'user' => 'Api\UsersController',
+        'role'       => 'Api\RolesController',
+        'user'       => 'Api\UsersController',
         'permission' => 'Api\PermissionsController',
     ]);
 

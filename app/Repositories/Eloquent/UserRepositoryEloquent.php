@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Contracts\Repositories\UserRepository;
 use App\Entities\User;
 use Illuminate\Support\Arr;
-use App\Contracts\Repositories\UserRepository;
-use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class UserRepositoryEloquent.
@@ -15,8 +15,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
     protected $fieldSearchable = [
         'first_name' => 'like',
-        'last_name' => 'like',
-        'email' => 'like',
+        'last_name'  => 'like',
+        'email'      => 'like',
     ];
 
     /**
@@ -31,6 +31,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     /**
      * Boot up the repository, pushing criteria.
+     *
      * @throws
      */
     public function boot()
@@ -40,10 +41,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     /**
      * @param array $data
+     *
      * @throws
+     *
      * @return User
      */
-    public function create(array $data) : User
+    public function create(array $data): User
     {
         return \DB::transaction(function () use ($data) {
             $user = new User(Arr::except($data, 'roles'));
@@ -61,10 +64,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     /**
      * @param array $data
      * @param $id
+     *
      * @throws
+     *
      * @return User
      */
-    public function update(array $data, $id) : User
+    public function update(array $data, $id): User
     {
         return \DB::transaction(function () use ($id, $data) {
             if (! Arr::get($data, 'password')) {

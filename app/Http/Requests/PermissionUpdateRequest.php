@@ -24,7 +24,6 @@ class PermissionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

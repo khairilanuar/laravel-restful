@@ -27,6 +27,7 @@ trait UserMethod
      * @param bool $size
      *
      * @throws \Illuminate\Container\EntryNotFoundException
+     *
      * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
      */
     public function getPicture($size = false)
@@ -45,7 +46,7 @@ trait UserMethod
 
         $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
 
-        if ($social_avatar && strlen($social_avatar->avatar)) {
+        if ($social_avatar && \strlen($social_avatar->avatar)) {
             return $social_avatar->avatar;
         }
 

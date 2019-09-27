@@ -2,12 +2,12 @@
 by Infinitum
 
 ## About
-a RESTful API server boilerplate which meant to quickstart your API server project.
+a RESTful API server boilerplate to quickstart your Laravel API server project.
 
-We found that Lumen is too light and we love Laravel more. However some serious modification has been made to Laravel in
-order to make it faster and lighter, such as disabling Session and Cookies support.  
+We found that Lumen is too light and we simply love Laravel more. However some serious modification has been made to 
+Laravel in order to make it faster and lighter, such as disabling Session and Cookies support.  
 
-This project is pre-installed (and pre-configured) with some useful and famous composer packages such as:
+This project is pre-installed (and pre-configured) with some useful (and famous!) composer packages such as:
 
 - Official OAuth2 by Laravel Passport
 - User management by [spatie/laravel-permission](https://github.com/spatie/laravel-permission)
@@ -21,11 +21,15 @@ This project is pre-installed (and pre-configured) with some useful and famous c
 
 Development Packages:
 
+- Parallel PHP unit testing by [paratest](https://github.com/paratestphp/paratest)
 - PHP coding style by [friendsofphp/php-cs-fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
 - PHP coding style by [squizlabs/PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 - Laravel IDE Helper by [Barryvdh](https://github.com/barryvdh/laravel-ide-helper)
+- API documentation generator by [mpociot/laravel-apidoc-generator](https://github.com/mpociot/laravel-apidoc-generator)
+- **TODO:** CI/CD Pipeline
 
-For full listing of 3rd party packages used in this project please look in `composer.json`
+
+For full listing of 3rd party packages used in this project please have a look in `composer.json`
 
 
 ## Getting Started `(WIP)`
@@ -46,10 +50,12 @@ For full listing of 3rd party packages used in this project please look in `comp
 ## Contributing
 Please follow standard Laravel coding style, check your code with pre-defined composer scripts:
 
-- To check PHP code styling: `composer cs-check`
-- To attempt fix PHP code styling: `composer cs-fixer`
+- To check PHP code styling: `composer cs:check`
+- To attempt fix PHP code styling: `composer cs:fix`
+- Make sure your code is covered in test cases: `composer test:coverage`
+- Run unit test: `composer test:unit`
 
-If everything is fine you can continue to submit your pull request to 'development' branch.
+If everything is good you can continue to submit your pull request to 'development' branch.
 
 
 ## License

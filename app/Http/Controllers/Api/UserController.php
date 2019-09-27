@@ -2,21 +2,42 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Validator;
 use App\Entities\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController
 {
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (! auth()->attempt($credentials)) {
+            return response()->json(['Unauthorized.'], \Illuminate\Http\Response::HTTP_UNAUTHORIZED);
+        }
+
+        $user = auth()->user();
+        $user->tokens()->delete();
+        $token = $user->createToken('SPA');
+        return [
+            'user'  => $user,
+            'token' => $token->accessToken,
+        ];
+    }
+
+    public function user()
+    {
+        return ['user' => auth()->user()];
+    }
+
     public function profile(Request $request)
     {
         $return = [
-            'user' => \Auth::user()->load('paymeInstance'),
+            'user'        => \Auth::user()->load('paymeInstance'),
             'permissions' => $this->getPermissions(),
-            'roles' => $this->getRoles(),
-            'apps' => \Auth::user()->apps
+            'roles'       => $this->getRoles(),
+            'apps'        => \Auth::user()->apps,
         ];
 
         return $this->sendSuccess($return, 'Ok.');
@@ -28,7 +49,7 @@ class UserController extends BaseController
             $accessTokenHeader = $request->header('Authorization');
             $accessToken = explode(' ', $accessTokenHeader)[1];
             $accessToken = explode('.', $accessToken)[0];
-            $accessToken = json_decode(base64_decode($accessToken))->jti;
+            $accessToken = json_decode(base64_decode($accessToken, true))->jti;
 
             // delete accessToken
             Auth::user()->tokens()->where('id', '=', $accessToken)->delete();
@@ -43,15 +64,16 @@ class UserController extends BaseController
      * Register api.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+            'first_name'            => 'required',
+            'last_name'             => 'required',
+            'email'                 => 'required|email',
+            'password'              => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
 
@@ -66,7 +88,7 @@ class UserController extends BaseController
         $success = [
             'token' => $user->createToken('MyApp')->accessToken,
             'email' => $user->email,
-            'user' => $user,
+            'user'  => $user,
         ];
 
         return $this->sendSuccess($success, 'User created.');
@@ -80,8 +102,8 @@ class UserController extends BaseController
         if ($simplified) {
             foreach ($permissions as $permission) {
                 $_permissions[] = [
-                    'id' => $permission->id,
-                    'name' => $permission->name,
+                    'id'    => $permission->id,
+                    'name'  => $permission->name,
                     'label' => $permission->label,
                 ];
             }

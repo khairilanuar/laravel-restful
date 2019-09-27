@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller as Controller;
+use Illuminate\Http\JsonResponse;
 
 class BaseController extends Controller
 {
@@ -21,24 +21,25 @@ class BaseController extends Controller
      * 500: Internal server error. Ideally you're not going to be explicitly returning this, but if something unexpected breaks, this is what your user is going to receive.
      * 503: Service unavailable. Pretty self explanatory, but also another code that is not going to be returned explicitly by the application.
      */
-    const API_STATUS_OK = 200;
-    const API_STATUS_CREATED = 201;
-    const API_STATUS_EMPTY = 204;
-    const API_STATUS_PARTIAL = 206;
-    const API_STATUS_BAD = 400;
-    const API_STATUS_UNAUTHENTICATED = 401;
-    const API_STATUS_FORBIDDEN = 403;
-    const API_STATUS_NOT_FOUND = 404;
-    const API_STATUS_SERVER_ERROR = 500;
-    const API_STATUS_SERVICE_UNAVAILABLE = 503;
+    public const API_STATUS_OK = 200;
+    public const API_STATUS_CREATED = 201;
+    public const API_STATUS_EMPTY = 204;
+    public const API_STATUS_PARTIAL = 206;
+    public const API_STATUS_BAD = 400;
+    public const API_STATUS_UNAUTHENTICATED = 401;
+    public const API_STATUS_FORBIDDEN = 403;
+    public const API_STATUS_NOT_FOUND = 404;
+    public const API_STATUS_SERVER_ERROR = 500;
+    public const API_STATUS_SERVICE_UNAVAILABLE = 503;
 
     /**
      * base response method.
      *
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $message
-     * @param int $status
-     * @param bool $success
+     * @param int    $status
+     * @param bool   $success
+     *
      * @return JsonResponse
      */
     protected function response($data, string $message, int $status = self::API_STATUS_OK, bool $success = true)
@@ -47,7 +48,7 @@ class BaseController extends Controller
             'success' => $success,
             //'status' => $status,
             'message' => $message,
-            'data' => $data,
+            'data'    => $data,
         ];
 
         return response()
@@ -59,12 +60,13 @@ class BaseController extends Controller
     /**
      * return success response.
      *
-     * @param mixed $data
+     * @param mixed  $data
      * @param string $message
-     * @param int $status
+     * @param int    $status
+     *
      * @return JsonResponse
      */
-    protected function sendSuccess($data, string $message, int $status=self::API_STATUS_OK)
+    protected function sendSuccess($data, string $message, int $status = self::API_STATUS_OK)
     {
         return $this->response($data, $message, $status);
     }
@@ -73,8 +75,9 @@ class BaseController extends Controller
      * return error response.
      *
      * @param string $message
-     * @param mixed $data
+     * @param mixed  $data
      * @param int code
+     *
      * @return JsonResponse
      */
     protected function sendError(string $message, $data = [], int $status = self::API_STATUS_BAD)

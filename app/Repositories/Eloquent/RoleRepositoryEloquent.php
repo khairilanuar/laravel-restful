@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Contracts\Repositories\RoleRepository;
 use App\Entities\Role;
 use Illuminate\Support\Arr;
-use App\Contracts\Repositories\RoleRepository;
-use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class RoleRepositoryEloquent.
@@ -29,6 +29,7 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 
     /**
      * Boot up the repository, pushing criteria.
+     *
      * @throws
      */
     public function boot()
@@ -38,10 +39,12 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 
     /**
      * @param array $data
+     *
      * @throws
+     *
      * @return Role
      */
-    public function create(array $data) : Role
+    public function create(array $data): Role
     {
         return \DB::transaction(function () use ($data) {
             $role = new Role($data);
@@ -59,10 +62,12 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     /**
      * @param array $data
      * @param $id
+     *
      * @throws
+     *
      * @return Role
      */
-    public function update(array $data, $id) : Role
+    public function update(array $data, $id): Role
     {
         return \DB::transaction(function () use ($id, $data) {
             if ($role = parent::update(Arr::except($data, 'permissions'), $id)) {

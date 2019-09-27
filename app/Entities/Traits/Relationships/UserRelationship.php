@@ -2,8 +2,8 @@
 
 namespace App\Entities\Traits\Relationships;
 
-use App\Entities\SocialAccount;
 use App\Entities\PasswordHistory;
+use App\Entities\SocialAccount;
 
 /**
  * Class UserRelationship.

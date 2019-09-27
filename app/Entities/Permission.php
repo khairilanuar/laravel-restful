@@ -2,8 +2,8 @@
 
 namespace App\Entities;
 
-use OwenIt\Auditing\Auditable;
 use Kalnoy\Nestedset\NodeTrait;
+use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableInterface;
 
 /**
@@ -11,5 +11,6 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableInterface;
  */
 class Permission extends \Spatie\Permission\Models\Permission implements AuditableInterface
 {
-    use NodeTrait, Auditable;
+    use NodeTrait;
+    use Auditable;
 }

@@ -24,7 +24,6 @@ class UserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

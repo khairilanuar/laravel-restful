@@ -12,12 +12,11 @@ trait UserAttribute
     /**
      * @param $password
      */
-    public function setPasswordAttribute($password) : void
+    public function setPasswordAttribute($password): void
     {
         // If password was accidentally passed in already hashed, try not to double hash it
-        if (
-            (\strlen($password) === 60 && preg_match('/^\$2y\$/', $password)) ||
-            (\strlen($password) === 95 && preg_match('/^\$argon2i\$/', $password))
+        if ((60 === \strlen($password) && preg_match('/^\$2y\$/', $password)) ||
+            (95 === \strlen($password) && preg_match('/^\$argon2i\$/', $password))
         ) {
             $hash = $password;
         } else {
@@ -46,7 +45,7 @@ trait UserAttribute
     public function getConfirmedLabelAttribute()
     {
         if ($this->isConfirmed()) {
-            if ($this->id != 1 && $this->id != auth()->id()) {
+            if (1 != $this->id && $this->id != auth()->id()) {
                 return '<a href="'.route(
                     'admin.auth.user.unconfirm',
                     $this
@@ -237,7 +236,7 @@ trait UserAttribute
      */
     public function getDeleteButtonAttribute()
     {
-        if ($this->id != auth()->id() && $this->id != 1) {
+        if ($this->id != auth()->id() && 1 != $this->id) {
             return '<a href="'.route('admin.auth.user.destroy', $this).'"
                  data-method="delete"
                  data-trans-button-cancel="'.__('buttons.general.cancel').'"

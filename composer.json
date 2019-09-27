@@ -44,6 +44,7 @@
         "fzaninotto/faker": "^1.4",
         "laravel/telescope": "^2.1",
         "mockery/mockery": "^1.0",
+        "mpociot/laravel-apidoc-generator": "^3.17",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
     },
@@ -86,12 +87,15 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "cs-fixer": [
+        "cs:fix": [
             "PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/php-cs-fixer fix -v --using-cache=no --allow-risky=yes",
             "vendor/bin/phpcbf"
         ],
-        "cs-check": [
+        "cs:check": [
             "vendor/bin/phpcs"
+        ],
+        "test:coverage": [
+            "vendor/bin/paratest -p8 --coverage-text --passthru=\"'--prepend' 'xdebug-filter.php'\" tests/Unit"
         ]
     }
 }

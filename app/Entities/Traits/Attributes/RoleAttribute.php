@@ -33,7 +33,7 @@ trait RoleAttribute
      */
     public function getActionButtonsAttribute()
     {
-        if ($this->id == 1) {
+        if (1 == $this->id) {
             return 'N/A';
         }
 

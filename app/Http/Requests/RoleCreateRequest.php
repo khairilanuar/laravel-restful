@@ -24,7 +24,6 @@ class RoleCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

@@ -2,32 +2,41 @@
 
 namespace App\Entities;
 
+use App\Entities\Traits\Attributes\UserAttribute;
+use App\Entities\Traits\Methods\UserMethod;
+use App\Entities\Traits\Relationships\UserRelationship;
+use App\Entities\Traits\Scopes\UserScope;
+use App\Entities\Traits\SendUserPasswordReset;
 use App\Entities\Traits\Uuid;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use App\Entities\Traits\Scopes\UserScope;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Entities\Traits\Methods\UserMethod;
-use App\Entities\Traits\SendUserPasswordReset;
-use App\Entities\Traits\Attributes\UserAttribute;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Entities\Traits\Relationships\UserRelationship;
 
 /**
  * Class User.
  */
 class User extends Authenticatable
 {
-    use HasRoles,
-        Notifiable,
-        SendUserPasswordReset,
-        SoftDeletes,
-        UserAttribute,
-        UserMethod,
-        UserRelationship,
-        UserScope,
-        Uuid,
+    use HasRoles;
+    use
+        Notifiable;
+    use
+        SendUserPasswordReset;
+    use
+        SoftDeletes;
+    use
+        UserAttribute;
+    use
+        UserMethod;
+    use
+        UserRelationship;
+    use
+        UserScope;
+    use
+        Uuid;
+    use
         HasApiTokens;
 
     protected $guard_name = 'web';
@@ -68,6 +77,7 @@ class User extends Authenticatable
 
     /**
      * The dynamic attributes from mutators that should be returned with the user object.
+     *
      * @var array
      */
     protected $appends = ['full_name'];
@@ -78,7 +88,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'enable' => 'boolean',
+        'enable'    => 'boolean',
         'confirmed' => 'boolean',
     ];
 }
