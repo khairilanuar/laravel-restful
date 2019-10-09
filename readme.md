@@ -4,8 +4,8 @@ by Infinitum
 ## About
 a RESTful API server boilerplate to quickstart your Laravel API server project.
 
-We found that Lumen is too light and we simply love Laravel more. However some serious modification has been made to 
-Laravel in order to make it faster and lighter, such as disabling Session and Cookies support.  
+We found that Lumen is too light and simply love Laravel more. However some serious modification has been made to 
+Laravel in order to make it faster and lighter, such as disabling Session and Cookies support with some other middlewares.  
 
 This project is pre-installed (and pre-configured) with some useful (and famous!) composer packages such as:
 
@@ -46,6 +46,7 @@ For full listing of 3rd party packages used in this project please have a look i
 1. `php artisan migrate`
 1. `php artisan passport:install`
 1. `php artisan db:seed`
+1. (optional) Generate API documentation: `php artisan apidoc:generate`
 
 ## Contributing
 Please follow standard Laravel coding style, check your code with pre-defined composer scripts:

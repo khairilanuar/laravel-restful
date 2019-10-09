@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class BaseController extends Controller
 {
@@ -21,6 +22,7 @@ class BaseController extends Controller
      * 500: Internal server error. Ideally you're not going to be explicitly returning this, but if something unexpected breaks, this is what your user is going to receive.
      * 503: Service unavailable. Pretty self explanatory, but also another code that is not going to be returned explicitly by the application.
      */
+    // Deprecated: should use \use Illuminate\Http\Response::HTTP_* instead
     public const API_STATUS_OK = 200;
     public const API_STATUS_CREATED = 201;
     public const API_STATUS_EMPTY = 204;
@@ -42,7 +44,7 @@ class BaseController extends Controller
      *
      * @return JsonResponse
      */
-    protected function response($data, string $message, int $status = self::API_STATUS_OK, bool $success = true)
+    protected function response($data, string $message, int $status = Response::HTTP_OK, bool $success = true)
     {
         $response = [
             'success' => $success,
@@ -66,7 +68,7 @@ class BaseController extends Controller
      *
      * @return JsonResponse
      */
-    protected function sendSuccess($data, string $message, int $status = self::API_STATUS_OK)
+    protected function sendSuccess($data, string $message, int $status = Response::HTTP_OK)
     {
         return $this->response($data, $message, $status);
     }
@@ -80,7 +82,7 @@ class BaseController extends Controller
      *
      * @return JsonResponse
      */
-    protected function sendError(string $message, $data = [], int $status = self::API_STATUS_BAD)
+    protected function sendError(string $message, $data = [], int $status = Response::HTTP_BAD_REQUEST)
     {
         return $this->response($data, $message, $status, false);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Entities\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,30 +15,30 @@ class UserController extends BaseController
     {
         $credentials = $request->only('email', 'password');
         if (! auth()->attempt($credentials)) {
-            return response()->json(['Unauthorized.'], \Illuminate\Http\Response::HTTP_UNAUTHORIZED);
+            return $this->sendError('Unauthorized.', [], Response::HTTP_UNAUTHORIZED);
         }
 
         $user = auth()->user();
         $user->tokens()->delete();
         $token = $user->createToken('SPA');
-        return [
+        $return = [
             'user'  => $user,
+            'permissions' => $this->getPermissions(),
+            'roles' => $this->getRoles(),
             'token' => $token->accessToken,
         ];
-    }
 
-    public function user()
-    {
-        return ['user' => auth()->user()];
+        return $this->sendSuccess($return, 'Ok.');
     }
 
     public function profile(Request $request)
     {
+        $user = auth()->user();
+        $user->permissions = $this->getPermissions();
+        $user->roles = $this->getRoles();
+
         $return = [
-            'user'        => \Auth::user()->load('paymeInstance'),
-            'permissions' => $this->getPermissions(),
-            'roles'       => $this->getRoles(),
-            'apps'        => \Auth::user()->apps,
+            'user'        => $user
         ];
 
         return $this->sendSuccess($return, 'Ok.');
@@ -52,11 +53,11 @@ class UserController extends BaseController
             $accessToken = json_decode(base64_decode($accessToken, true))->jti;
 
             // delete accessToken
-            Auth::user()->tokens()->where('id', '=', $accessToken)->delete();
+            auth()->user()->tokens()->where('id', '=', $accessToken)->delete();
 
             return $this->sendSuccess([], 'Ok.');
         } catch (\Exception $e) {
-            return $this->sendError('Invalid Authorization header.', null, 400);
+            return $this->sendError('Invalid Authorization header.', null, Response::HTTP_BAD_REQUEST);
         }
     }
 
@@ -96,7 +97,7 @@ class UserController extends BaseController
 
     protected function getPermissions($simplified = true)
     {
-        $permissions = \Auth::user()->getAllPermissions();
+        $permissions = auth()->user()->getAllPermissions();
         $_permissions = [];
 
         if ($simplified) {
@@ -114,6 +115,6 @@ class UserController extends BaseController
 
     protected function getRoles()
     {
-        return Auth::user()->roles()->get(['id', 'name'])->toArray();
+        return auth()->user()->roles()->get(['id', 'name'])->toArray();
     }
 }

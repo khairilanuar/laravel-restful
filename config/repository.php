@@ -210,9 +210,9 @@ return [
         'params'             => [
             'search'       => 'search',
             'searchFields' => 'searchFields',
-            'filter'       => 'column',
-            'orderBy'      => 'orderBy',
-            'sortedBy'     => 'orderDir',
+            'filter'       => 'field',
+            'orderBy'      => 'sortBy',
+            'sortedBy'     => 'sortDir',
             'with'         => 'with',
             'searchJoin'   => 'searchJoin',
         ],

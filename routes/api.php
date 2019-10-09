@@ -20,8 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 
 Route::post('user/register', 'Api\UserController@register')->name('api.user.register');
+Route::post('auth/login', 'Api\UserController@login')->name('api.auth.login');
 
 Route::middleware(['auth:api'])->as('api.')->group(function () {
+    Route::post('auth/logout', 'Api\UserController@logout')->name('api.auth.logout');
+
     // additional api/user/ routes
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::get('profile', 'Api\UserController@profile')->name('profile');

@@ -49,7 +49,7 @@ class UsersController extends BaseController
     public function index()
     {
         $per_page = \Request::get('perPage');
-        $data = $this->repository->with(['roles', 'paymeInstance', 'apps'])->paginate($per_page);
+        $data = $this->repository->with(['roles'])->paginate($per_page);
 
         return $this->sendSuccess($data, __('api.success_list', ['name' => $this->name]));
     }
@@ -79,9 +79,9 @@ class UsersController extends BaseController
     {
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-            $transport = $this->repository->create($request->all());
+            $user = $this->repository->create($request->all());
 
-            return $this->sendSuccess($transport, __('api.success_create', ['name' => $this->name]));
+            return $this->sendSuccess($user, __('api.success_create', ['name' => $this->name]));
         } catch (ValidatorException $e) {
             return $this->sendError(__('api.error_validation'), $e->getMessageBag(), 400);
         } catch (QueryException $e) {
