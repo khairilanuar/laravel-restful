@@ -72,13 +72,11 @@ class AuthController extends BaseController
      */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'first_name'            => 'required',
-            'last_name'             => 'required',
-            'email'                 => 'required|email',
-            'password'              => 'required',
-            'password_confirmation' => 'required|same:password',
-        ]);
+        if (! config('settings.allow_public_registration')) {
+            return $this->sendError('User registration is not enabled', []);
+        }
+
+        $validator = Validator::make($request->all(), $this->getValidatorRules());
 
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
@@ -86,8 +84,14 @@ class AuthController extends BaseController
 
         try {
             $input = $request->all();
-            $input['password'] =  Hash::make($input['password']);
-            $user = User::create($input);
+            $input['password'] = Hash::make($input['password']);
+
+            if (! $user = User::create($input)) {
+                return $this->sendError('Fail to create user.', $input);
+            }
+
+            // assign default user role
+            $user->assignRole(config('access.users.default_role'));
 
             $success = [
                 'token' => $user->createToken('MyApp')->accessToken,
@@ -96,7 +100,6 @@ class AuthController extends BaseController
             ];
 
             return $this->sendSuccess($success, 'User created.');
-
         } catch (Exception $e) {
             return $this->sendError('Fail to register user.', $e->getMessage(), $e->getCode());
         }
@@ -123,5 +126,39 @@ class AuthController extends BaseController
     protected function getRoles()
     {
         return auth()->user()->roles()->get(['id', 'name'])->toArray();
+    }
+
+    protected function getValidatorRules()
+    {
+        $rules = [
+            'first_name'            => 'required',
+            'last_name'             => 'required',
+            'email'                 => 'required|email|unique:users',
+            'password'              => [
+                'required',
+                'string',
+                'min:'.config('settings.password_strength.min_length'),
+            ],
+            'password_confirmation' => 'required|same:password',
+        ];
+
+        if (config('settings.password_strength.require_lowercase_character')) {
+            // must contain at least one lowercase letter
+            $rules['password'][] = 'regex:/[a-z]/';
+        }
+        if (config('settings.password_strength.require_uppercase_character')) {
+            // must contain at least one uppercase letter
+            $rules['password'][] = 'regex:/[A-Z]/';
+        }
+        if (config('settings.password_strength.require_numeric_character')) {
+            // must contain at least one numeric character
+            $rules['password'][] = 'regex:/[0-9]/';
+        }
+        if (config('settings.password_strength.require_special_character')) {
+            // must contain a special character
+            $rules['password'][] = 'regex:/[@$!%*#?&]/';
+        }
+
+        return $rules;
     }
 }

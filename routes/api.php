@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
-Route::post('user/register', 'Api\AuthController@register')->name('api.user.register');
-Route::post('auth/login', 'Api\AuthController@login')->name('api.auth.login');
+// guest-only api routes
+Route::middleware(['guest:api'])->as('api.')->group(function () {
+    if (config('settings.allow_public_registration')) {
+        Route::post('user/register', 'Api\AuthController@register')->name('user.register');
+    }
+    Route::post('auth/login', 'Api\AuthController@login')->name('auth.login');
+});
 
+// authenticated api routes
 Route::middleware(['auth:api'])->as('api.')->group(function () {
     Route::post('auth/logout', 'Api\AuthController@logout')->name('api.auth.logout');
 

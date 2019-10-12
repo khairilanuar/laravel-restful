@@ -48,13 +48,11 @@ class BaseController extends Controller
     {
         $response = [
             'success' => $success,
-            //'status' => $status,
             'message' => $message,
-            'data'    => $data,
+            'payload' => $data,
         ];
 
         return response()
-            //->setStatusCode($status)
             ->json($response, $status)
             ;
     }

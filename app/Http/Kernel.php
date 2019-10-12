@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:60,1',
+            'throttle:180,1',
             'bindings',
         ],
     ];
@@ -60,13 +60,14 @@ class Kernel extends HttpKernel
         'bindings'      => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'           => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest'         => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        //'guest'         => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest'         => \App\Http\Middleware\Guest::class,
         'signed'        => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle'      => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified'      => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         // 3rd party middlewares
-        'crypton' => \Tzsk\Crypton\Middlewares\EncryptRequestResponse::class,
+        'crypton'       => \Tzsk\Crypton\Middlewares\EncryptRequestResponse::class,
     ];
 
     /**
