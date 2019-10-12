@@ -7,9 +7,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use PHPUnit\Exception;
 
-class UserController extends BaseController
+class AuthController extends BaseController
 {
     public function login(Request $request)
     {
@@ -22,10 +24,10 @@ class UserController extends BaseController
         $user->tokens()->delete();
         $token = $user->createToken('SPA');
         $return = [
-            'user'  => $user,
+            'user'        => $user,
             'permissions' => $this->getPermissions(),
-            'roles' => $this->getRoles(),
-            'token' => $token->accessToken,
+            'roles'       => $this->getRoles(),
+            'token'       => $token->accessToken,
         ];
 
         return $this->sendSuccess($return, 'Ok.');
@@ -38,7 +40,7 @@ class UserController extends BaseController
         $user->roles = $this->getRoles();
 
         $return = [
-            'user'        => $user
+            'user'        => $user,
         ];
 
         return $this->sendSuccess($return, 'Ok.');
@@ -82,17 +84,22 @@ class UserController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        try {
+            $input = $request->all();
+            $input['password'] =  Hash::make($input['password']);
+            $user = User::create($input);
 
-        $success = [
-            'token' => $user->createToken('MyApp')->accessToken,
-            'email' => $user->email,
-            'user'  => $user,
-        ];
+            $success = [
+                'token' => $user->createToken('MyApp')->accessToken,
+                'email' => $user->email,
+                'user'  => $user,
+            ];
 
-        return $this->sendSuccess($success, 'User created.');
+            return $this->sendSuccess($success, 'User created.');
+
+        } catch (Exception $e) {
+            return $this->sendError('Fail to register user.', $e->getMessage(), $e->getCode());
+        }
     }
 
     protected function getPermissions($simplified = true)

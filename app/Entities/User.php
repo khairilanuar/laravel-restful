@@ -20,24 +20,15 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasRoles;
-    use
-        Notifiable;
-    use
-        SendUserPasswordReset;
-    use
-        SoftDeletes;
-    use
-        UserAttribute;
-    use
-        UserMethod;
-    use
-        UserRelationship;
-    use
-        UserScope;
-    use
-        Uuid;
-    use
-        HasApiTokens;
+    use Notifiable;
+    use SendUserPasswordReset;
+    use SoftDeletes;
+    use UserAttribute;
+    use UserMethod;
+    use UserRelationship;
+    use UserScope;
+    use Uuid;
+    use HasApiTokens;
 
     protected $guard_name = 'web';
 
