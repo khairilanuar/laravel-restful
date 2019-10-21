@@ -17,7 +17,7 @@ class AuthController extends BaseController
     {
         $credentials = $request->only('email', 'password');
         if (! auth()->attempt($credentials)) {
-            return $this->sendError('Unauthorized.', [], Response::HTTP_UNAUTHORIZED);
+            return $this->sendError('Invalid login credential.', [], Response::HTTP_UNAUTHORIZED);
         }
 
         $user = auth()->user();
@@ -103,6 +103,12 @@ class AuthController extends BaseController
         } catch (Exception $e) {
             return $this->sendError('Fail to register user.', $e->getMessage(), $e->getCode());
         }
+    }
+
+    public function forgotPassword()
+    {
+        // TODO: forgot password
+        return $this->sendSuccess([], 'TODO: forgot password');
     }
 
     protected function getPermissions($simplified = true)

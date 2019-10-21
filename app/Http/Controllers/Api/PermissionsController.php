@@ -48,8 +48,8 @@ class PermissionsController extends BaseController
      */
     public function index()
     {
-        if (\Request::get('getRef', false)) {
-            return $this->getRef();
+        if ($ref = \Request::get('getRef')) {
+            return $this->getRef($ref);
         }
 
         $per_page = \Request::get('perPage');
@@ -58,10 +58,9 @@ class PermissionsController extends BaseController
         return $this->sendSuccess($data, __('api.success_list', ['name' => $this->name]));
     }
 
-    protected function getRef()
+    protected function getRef($ref = null)
     {
         $refs = $this->repository->makeModel()
-            //->orderBy('name')
             ->defaultOrder()
             ->get()
             ->toTree()

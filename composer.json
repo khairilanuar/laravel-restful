@@ -11,6 +11,7 @@
     "require": {
         "php": "^7.2",
         "ext-bcmath": "*",
+        "ext-json": "*",
         "barryvdh/laravel-snappy": "^0.4.5",
         "bepsvpt/secure-headers": "^5.5",
         "fideloper/proxy": "^4.0",
@@ -21,7 +22,9 @@
         "laravel/framework": "^6.0",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0",
+        "league/fractal": "^0.18.0",
         "maatwebsite/excel": "^3.1",
+        "markwalet/laravel-hashed-route": "^2.1",
         "owen-it/laravel-auditing": "^9.3",
         "pragmarx/version": "^1.0",
         "predis/predis": "^1.1",

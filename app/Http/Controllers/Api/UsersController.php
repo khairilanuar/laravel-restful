@@ -63,7 +63,7 @@ class UsersController extends BaseController
      */
     public function show(User $user)
     {
-        return $this->sendSuccess($user, __('api.success_show'));
+        return $this->sendSuccess($user->load(['roles']), __('api.success_show'));
     }
 
     /**
@@ -126,6 +126,12 @@ class UsersController extends BaseController
      */
     public function destroy(User $user)
     {
+        if (! $user) {
+            $this->sendError('User not found!');
+        }
+
+        // TODO: check if deleted user is the last admin user
+
         $deleted = $this->repository->delete($user->id);
 
         return $this->sendSuccess($deleted, __('api.success_delete', ['name' => $this->name]));

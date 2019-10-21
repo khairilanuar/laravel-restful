@@ -20,12 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
+// public api routes
+if (config('settings.allow_public_registration')) {
+    Route::post('user/register', 'Api\AuthController@register')->name('user.register');
+}
+
 // guest-only api routes
 Route::middleware(['guest:api'])->as('api.')->group(function () {
-    if (config('settings.allow_public_registration')) {
-        Route::post('user/register', 'Api\AuthController@register')->name('user.register');
-    }
     Route::post('auth/login', 'Api\AuthController@login')->name('auth.login');
+    Route::post('auth/forgot-password', 'Api\AuthController@forgotPassword')->name('auth.forgot-password');
 });
 
 // authenticated api routes
@@ -36,7 +39,7 @@ Route::middleware(['auth:api'])->as('api.')->group(function () {
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::get('profile', 'Api\AuthController@profile')->name('profile');
         Route::get('permissions', 'Api\AuthController@getPermissions')->name('permissions');
-        Route::post('logout', 'Api\AuthController@logout')->name('logout');
+        // Route::post('logout', 'Api\AuthController@logout')->name('logout');
     });
 
     // api/

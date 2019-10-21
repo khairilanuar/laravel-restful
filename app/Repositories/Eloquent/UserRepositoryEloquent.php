@@ -82,7 +82,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
             if ($user = parent::update(Arr::except($data, ['roles']), $id)) {
                 // update related data
-                $user->syncRoles(Arr::get($data, 'roles', []));
+                $roles = Arr::get($data, 'roles', []);
+                if ($roles && \is_array($roles) && \is_array($roles[0])) {
+                    $_roles = [];
+                    foreach ($roles as $role) {
+                        $_roles[] = Arr::get($role, 'name');
+                    }
+                    $roles = $_roles;
+                }
+                $user->syncRoles($roles);
 
                 // trigger event
                 //event(new UserUpdated($scheduleStatus));

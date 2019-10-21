@@ -53,7 +53,9 @@ class RolesController extends BaseController
         }
 
         $per_page = \Request::get('perPage');
-        $data = $this->repository->with(['permissions'])->paginate($per_page);
+        $data = $this->repository
+            ->with(['permissions:id,name,label'])
+            ->paginate($per_page);
 
         return $this->sendSuccess($data, __('api.success_list', ['name' => $this->name]));
     }
@@ -76,7 +78,10 @@ class RolesController extends BaseController
      */
     public function show(Role $role)
     {
-        return $this->sendSuccess($role, __('api.success_show'));
+        return $this->sendSuccess(
+            $role->load(['permissions:id,name,label']),
+            __('api.success_show')
+        );
     }
 
     /**

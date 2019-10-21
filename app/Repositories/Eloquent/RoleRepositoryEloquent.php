@@ -6,7 +6,6 @@ use App\Contracts\Repositories\RoleRepository;
 use App\Entities\Role;
 use Illuminate\Support\Arr;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class RoleRepositoryEloquent.
@@ -47,10 +46,11 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     public function create(array $data): Role
     {
         return \DB::transaction(function () use ($data) {
-            $role = new Role($data);
+            $role = new Role(Arr::except($data, 'permissions'));
 
             if ($role->save()) {
                 //event(new RoleCreated($role));
+                $role->permissions()->sync(Arr::get($data, 'permissions', []));
 
                 return $role;
             }

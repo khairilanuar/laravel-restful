@@ -14,10 +14,8 @@ use Spatie\Permission\Models\Role as SpatieRole;
 class Role extends SpatieRole implements AuditableContract
 {
     use Auditable;
-    use
-        RoleAttribute;
-    use
-        RoleMethod;
+    use RoleAttribute;
+    use RoleMethod;
 
     /**
      * Attributes to exclude from the Audit.
