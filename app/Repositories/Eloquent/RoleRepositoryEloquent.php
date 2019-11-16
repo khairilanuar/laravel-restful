@@ -37,11 +37,7 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     }
 
     /**
-     * @param array $data
-     *
      * @throws
-     *
-     * @return Role
      */
     public function create(array $data): Role
     {
@@ -60,12 +56,9 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     }
 
     /**
-     * @param array $data
      * @param $id
      *
      * @throws
-     *
-     * @return Role
      */
     public function update(array $data, $id): Role
     {

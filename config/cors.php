@@ -18,6 +18,8 @@ return [
         'allow_credentials' => false,
 
         'allow_origins' => [
+            // NOTE: should only allow your trusted origin endpoint here
+            // 'https://*.yourdomain.com',
             '*',
         ],
 
@@ -35,6 +37,10 @@ return [
             'X-Auth-Token',
             'Origin',
             'Authorization',
+
+            // crypton headers
+            'x-request-encrypted',
+            'x-response-encrypted',
         ],
 
         'expose_headers' => [

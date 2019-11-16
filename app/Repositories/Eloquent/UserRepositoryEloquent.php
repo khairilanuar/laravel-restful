@@ -40,11 +40,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
-     * @param array $data
-     *
      * @throws
-     *
-     * @return User
      */
     public function create(array $data): User
     {
@@ -62,12 +58,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
-     * @param array $data
      * @param $id
      *
      * @throws
-     *
-     * @return User
      */
     public function update(array $data, $id): User
     {

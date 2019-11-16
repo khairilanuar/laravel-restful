@@ -37,10 +37,7 @@ class BaseController extends Controller
     /**
      * base response method.
      *
-     * @param mixed  $data
-     * @param string $message
-     * @param int    $status
-     * @param bool   $success
+     * @param mixed $data
      *
      * @return JsonResponse
      */
@@ -60,9 +57,7 @@ class BaseController extends Controller
     /**
      * return success response.
      *
-     * @param mixed  $data
-     * @param string $message
-     * @param int    $status
+     * @param mixed $data
      *
      * @return JsonResponse
      */
@@ -74,8 +69,7 @@ class BaseController extends Controller
     /**
      * return error response.
      *
-     * @param string $message
-     * @param mixed  $data
+     * @param mixed $data
      * @param int code
      *
      * @return JsonResponse

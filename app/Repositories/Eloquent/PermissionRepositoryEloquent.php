@@ -33,11 +33,7 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
     }
 
     /**
-     * @param array $data
-     *
      * @throws
-     *
-     * @return Permission
      */
     public function create(array $data): Permission
     {
@@ -55,12 +51,9 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
     }
 
     /**
-     * @param array $data
      * @param $id
      *
      * @throws
-     *
-     * @return Permission
      */
     public function update(array $data, $id): Permission
     {

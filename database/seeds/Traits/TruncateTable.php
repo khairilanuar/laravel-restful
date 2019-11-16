@@ -28,9 +28,6 @@ trait TruncateTable
         return false;
     }
 
-    /**
-     * @param array $tables
-     */
     protected function truncateMultiple(array $tables)
     {
         foreach ($tables as $table) {

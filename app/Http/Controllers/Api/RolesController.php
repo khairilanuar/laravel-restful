@@ -31,9 +31,6 @@ class RolesController extends BaseController
 
     /**
      * RolesController constructor.
-     *
-     * @param RoleRepository $repository
-     * @param RoleValidator  $validator
      */
     public function __construct(RoleRepository $repository, RoleValidator $validator)
     {
@@ -72,8 +69,6 @@ class RolesController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Role $role
-     *
      * @return JsonResponse
      */
     public function show(Role $role)
@@ -86,8 +81,6 @@ class RolesController extends BaseController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param RoleCreateRequest $request
      *
      * @throws
      *
@@ -112,9 +105,6 @@ class RolesController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param RoleUpdateRequest $request
-     * @param Role              $role
-     *
      * @throws
      *
      * @return JsonResponse
@@ -137,8 +127,6 @@ class RolesController extends BaseController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param Role $role
      *
      * @return JsonResponse
      */

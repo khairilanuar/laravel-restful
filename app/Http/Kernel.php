@@ -44,6 +44,9 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:180,1',
             'bindings',
+
+            // crypton middleware
+            'crypton',
         ],
     ];
 

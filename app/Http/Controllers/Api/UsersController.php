@@ -31,9 +31,6 @@ class UsersController extends BaseController
 
     /**
      * UsersController constructor.
-     *
-     * @param UserRepository $repository
-     * @param UserValidator  $validator
      */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
@@ -57,8 +54,6 @@ class UsersController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param User $user
-     *
      * @return JsonResponse
      */
     public function show(User $user)
@@ -68,8 +63,6 @@ class UsersController extends BaseController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param UserCreateRequest $request
      *
      * @throws
      *
@@ -94,9 +87,6 @@ class UsersController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param UserUpdateRequest $request
-     * @param User              $user
-     *
      * @throws
      *
      * @return JsonResponse
@@ -119,8 +109,6 @@ class UsersController extends BaseController
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param User $user
      *
      * @return JsonResponse
      */

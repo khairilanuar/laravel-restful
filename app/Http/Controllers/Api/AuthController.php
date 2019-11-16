@@ -51,7 +51,7 @@ class AuthController extends BaseController
         try {
             $accessTokenHeader = $request->header('Authorization');
             $accessToken = explode(' ', $accessTokenHeader)[1];
-            $accessToken = explode('.', $accessToken)[0];
+            $accessToken = explode('.', $accessToken)[1];
             $accessToken = json_decode(base64_decode($accessToken, true))->jti;
 
             // delete accessToken
@@ -65,8 +65,6 @@ class AuthController extends BaseController
 
     /**
      * Register api.
-     *
-     * @param Request $request
      *
      * @return JsonResponse
      */

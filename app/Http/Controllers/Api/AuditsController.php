@@ -27,9 +27,6 @@ class AuditsController extends BaseController
 
     /**
      * RolesController constructor.
-     *
-     * @param AuditRepository $repository
-     * @param AuditValidator  $validator
      */
     public function __construct(AuditRepository $repository, AuditValidator $validator)
     {
@@ -76,8 +73,6 @@ class AuditsController extends BaseController
 
     /**
      * Display the specified resource.
-     *
-     * @param Audit $audit
      *
      * @return JsonResponse
      */
