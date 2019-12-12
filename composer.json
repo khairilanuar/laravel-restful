@@ -19,7 +19,7 @@
         "h4cc/wkhtmltoimage-amd64": "^0.12.4",
         "h4cc/wkhtmltopdf-amd64": "^0.12.4",
         "kalnoy/nestedset": "^5.0",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "^6.2",
         "laravel/passport": "^8.0",
         "laravel/tinker": "^1.0",
         "league/fractal": "^0.18.0",
