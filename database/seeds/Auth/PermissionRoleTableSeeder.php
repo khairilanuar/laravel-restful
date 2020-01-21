@@ -71,11 +71,15 @@ class PermissionRoleTableSeeder extends Seeder
                         'label'    => 'Access Management',
                         'children' => [
                             'read-user'   => 'Read User',
-                            'create-user' => 'Create/Update User',
+                            'create-user'    => 'Create User',
+                            'update-user'    => 'Update User',
                             'delete-user' => 'Delete User',
+                            'revoke-user'    => 'Revoke User',
+                            'reinstate-user' => 'Reinstate User',
 
                             'read-role'   => 'Read Role',
-                            'create-role' => 'Create/Update Role',
+                            'create-role' => 'Create Role',
+                            'update-role' => 'Update Role',
                             'delete-role' => 'Delete Role',
                         ],
                     ],
@@ -86,6 +90,9 @@ class PermissionRoleTableSeeder extends Seeder
                     ],
                 ],
             ],
+        ];
+
+        $additional_permissions = [
         ];
 
         // seed permission from array

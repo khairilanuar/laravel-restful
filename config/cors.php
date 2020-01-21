@@ -15,12 +15,14 @@ return [
      * This configuration is used by `DefaultProfile`.
      */
     'default_profile' => [
-        'allow_credentials' => false,
+        'allow_credentials' => true,
 
         'allow_origins' => [
             // NOTE: should only allow your trusted origin endpoint here
             // 'https://*.yourdomain.com',
-            '*',
+            // '*',
+            config('app.url'),
+            config('app.client_url')
         ],
 
         'allow_methods' => [
