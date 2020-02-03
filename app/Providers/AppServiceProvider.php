@@ -14,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
         // register non production service providers
         if (! $this->app->isProduction()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
         }
     }
 

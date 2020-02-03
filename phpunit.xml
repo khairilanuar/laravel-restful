@@ -21,6 +21,7 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
+            <exclude>./app/Providers</exclude>
         </whitelist>
     </filter>
     <php>

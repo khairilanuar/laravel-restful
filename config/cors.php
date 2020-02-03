@@ -22,7 +22,7 @@ return [
             // 'https://*.yourdomain.com',
             // '*',
             config('app.url'),
-            config('app.client_url')
+            config('app.client_url'),
         ],
 
         'allow_methods' => [

@@ -70,10 +70,10 @@ class PermissionRoleTableSeeder extends Seeder
                     'access-access' => [
                         'label'    => 'Access Management',
                         'children' => [
-                            'read-user'   => 'Read User',
+                            'read-user'      => 'Read User',
                             'create-user'    => 'Create User',
                             'update-user'    => 'Update User',
-                            'delete-user' => 'Delete User',
+                            'delete-user'    => 'Delete User',
                             'revoke-user'    => 'Revoke User',
                             'reinstate-user' => 'Reinstate User',
 
