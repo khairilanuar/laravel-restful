@@ -60,7 +60,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     /**
      * @param $id
      *
-     * @throws
+     * @throws \Throwable
      */
     public function update(array $data, $id): User
     {

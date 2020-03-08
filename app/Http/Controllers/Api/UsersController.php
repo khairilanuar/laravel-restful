@@ -64,8 +64,6 @@ class UsersController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @throws
-     *
      * @return JsonResponse
      */
     public function store(UserCreateRequest $request)
@@ -86,8 +84,6 @@ class UsersController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @throws
      *
      * @return JsonResponse
      */

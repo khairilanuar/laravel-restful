@@ -52,3 +52,7 @@ Route::middleware(['auth:api'])->as('api.')->group(function () {
     // audit routes
     Route::get('audit', 'Api\AuditsController@index')->name('audit.index');
 });
+
+Route::group(['prefix' => 'v2', 'as' => 'api.v2.'], function () {
+    Route::apiResource('user', 'v2\UsersController');
+});
