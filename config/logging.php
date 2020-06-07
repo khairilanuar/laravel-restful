@@ -5,6 +5,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel
@@ -94,5 +95,10 @@ return [
             'driver'  => 'monolog',
             'handler' => NullHandler::class,
         ],
+
+        'emergency' => [
+            'path' => storage_path('logs/laravel.log'),
+        ],
     ],
+
 ];

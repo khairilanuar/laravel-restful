@@ -7,7 +7,7 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableInterface;
 
 /**
- * Class Role.
+ * Class Permission.
  */
 class Permission extends \Spatie\Permission\Models\Permission implements AuditableInterface
 {
