@@ -33,6 +33,7 @@ $rules = [
     'no_unreachable_default_argument_value' => true,
     'no_useless_else' => true,
     'no_useless_return' => true,
+    'no_superfluous_phpdoc_tags' => false,
     'not_operator_with_successor_space' => true,
     'ordered_imports' => ['sortAlgorithm' => 'alpha'],
     'php_unit_strict' => true,

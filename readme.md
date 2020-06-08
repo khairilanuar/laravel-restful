@@ -44,7 +44,7 @@ For full listing of 3rd party packages used in this project please have a look i
 1. (optional) customize configuration (in `config/` directory)
 1. set your database connection parameter in `.env`
 1. `php artisan migrate`
-1. `php artisan passport:install`
+1. `php artisan passport:install` (--force, as required) 
 1. `php artisan db:seed`
 1. (optional) Generate API documentation: `php artisan apidoc:generate`
 

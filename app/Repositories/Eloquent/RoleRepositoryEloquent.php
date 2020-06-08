@@ -36,9 +36,6 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    /**
-     * @throws
-     */
     public function create(array $data): Role
     {
         return \DB::transaction(function () use ($data) {
@@ -56,9 +53,10 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
     }
 
     /**
+     * @param array $data
      * @param $id
      *
-     * @throws
+     * @return Role
      */
     public function update(array $data, $id): Role
     {

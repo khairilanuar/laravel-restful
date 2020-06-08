@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BaseController extends Controller
 {
@@ -23,6 +24,7 @@ class BaseController extends Controller
      * 503: Service unavailable. Pretty self explanatory, but also another code that is not going to be returned explicitly by the application.
      */
     // Deprecated: should use \use Illuminate\Http\Response::HTTP_* instead
+    /*
     public const API_STATUS_OK = 200;
     public const API_STATUS_CREATED = 201;
     public const API_STATUS_EMPTY = 204;
@@ -33,6 +35,7 @@ class BaseController extends Controller
     public const API_STATUS_NOT_FOUND = 404;
     public const API_STATUS_SERVER_ERROR = 500;
     public const API_STATUS_SERVICE_UNAVAILABLE = 503;
+    */
 
     /**
      * base response method.
@@ -43,6 +46,10 @@ class BaseController extends Controller
      */
     protected function response($data, string $message, int $status = Response::HTTP_OK, bool $success = true)
     {
+        if (! \Request::wantsJson()) {
+            throw new NotFoundHttpException();
+        }
+
         $response = [
             'success' => $success,
             'message' => $message,

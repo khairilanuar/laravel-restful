@@ -31,6 +31,9 @@ class RolesController extends BaseController
 
     /**
      * RolesController constructor.
+     *
+     * @param RoleRepository $repository
+     * @param RoleValidator  $validator
      */
     public function __construct(RoleRepository $repository, RoleValidator $validator)
     {
@@ -69,20 +72,22 @@ class RolesController extends BaseController
     /**
      * Display the specified resource.
      *
+     * @param Role $role
+     *
      * @return JsonResponse
      */
     public function show(Role $role)
     {
         return $this->sendSuccess(
             $role->load(['permissions:id,name,label']),
-            __('api.success_show')
+            __('api.success_show', ['name' => $this->name])
         );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @throws
+     * @param RoleCreateRequest $request
      *
      * @return JsonResponse
      */
@@ -105,7 +110,8 @@ class RolesController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @throws
+     * @param RoleUpdateRequest $request
+     * @param Role              $role
      *
      * @return JsonResponse
      */
@@ -127,6 +133,8 @@ class RolesController extends BaseController
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param Role $role
      *
      * @return JsonResponse
      */
