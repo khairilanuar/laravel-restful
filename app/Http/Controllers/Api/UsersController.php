@@ -7,6 +7,7 @@ use App\Entities\User;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Validators\UserValidator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -31,6 +32,9 @@ class UsersController extends BaseController
 
     /**
      * UsersController constructor.
+     *
+     * @param UserRepository $repository
+     * @param UserValidator  $validator
      */
     public function __construct(UserRepository $repository, UserValidator $validator)
     {
@@ -54,15 +58,30 @@ class UsersController extends BaseController
     /**
      * Display the specified resource.
      *
+     * @param string $user
+     *
      * @return JsonResponse
      */
-    public function show(User $user)
+    public function show(string $user)
     {
-        return $this->sendSuccess($user->load(['roles']), __('api.success_show'));
+        try {
+            if (! $user = $this->repository->findWhere(['uuid' => $user])->first()) {
+                throw new ModelNotFoundException();
+            }
+
+            return $this->sendSuccess($user->load(['roles']), __('api.success_show'));
+        } catch (ModelNotFoundException $e) {
+            return $this->sendError(__('api.error_not_found', ['name' => $this->name]), $e->getMessage());
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage(), $e->getTrace());
+            return $this->sendError(__('api.error_general', ['name' => $this->name]), $e->getMessage());
+        }
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param UserCreateRequest $request
      *
      * @return JsonResponse
      */
@@ -77,7 +96,7 @@ class UsersController extends BaseController
             return $this->sendError(__('api.error_validation'), $e->getMessageBag(), 400);
         } catch (QueryException $e) {
             return $this->sendError(__('api.error_query'), $e->getMessage(), 400);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return $this->sendError(__('api.error_general'), $e->getMessage(), 400);
         }
     }
@@ -85,39 +104,57 @@ class UsersController extends BaseController
     /**
      * Update the specified resource in storage.
      *
+     * @param UserUpdateRequest $request
+     * @param string            $user
+     *
      * @return JsonResponse
      */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, string $user)
     {
         try {
+            if (! $user = $this->repository->findWhere(['uuid' => $user])->first()) {
+                throw new ModelNotFoundException();
+            }
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-            $_user = $this->repository->update($request->all(), $user->id);
+            $updated = $this->repository->update($request->all(), $user->id);
 
-            return $this->sendSuccess($_user, __('api.success_update', ['name' => $this->name]));
+            return $this->sendSuccess($updated, __('api.success_update', ['name' => $this->name]));
         } catch (ValidatorException $e) {
             return $this->sendError(__('api.error_validation'), $e->getMessageBag());
         } catch (QueryException $e) {
             return $this->sendError(__('api.error_query'), $e->getMessage(), 400);
-        } catch (\Exception $e) {
-            return $this->sendError(__('api.error_general'), $e->getMessage(), 400);
+        } catch (ModelNotFoundException $e) {
+            return $this->sendError(__('api.error_not_found', ['name' => $this->name]), $e->getMessage());
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage(), $e->getTrace());
+            return $this->sendError(__('api.error_general', ['name' => $this->name]), $e->getMessage());
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param string $user
+     *
      * @return JsonResponse
      */
-    public function destroy(User $user)
+    public function destroy(string $user)
     {
-        if (! $user) {
-            $this->sendError('User not found!');
+        try {
+            if (! $user = $this->repository->findWhere(['uuid' => $user])->first()) {
+                throw new ModelNotFoundException();
+            }
+
+            // TODO: check if deleted user is the last admin user
+
+            $deleted = $this->repository->delete($user->id);
+
+            return $this->sendSuccess($deleted, __('api.success_delete', ['name' => $this->name]));
+        } catch (ModelNotFoundException $e) {
+            return $this->sendError(__('api.error_not_found', ['name' => $this->name]), $e->getMessage());
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage(), $e->getTrace());
+            return $this->sendError(__('api.error_general', ['name' => $this->name]), $e->getMessage());
         }
-
-        // TODO: check if deleted user is the last admin user
-
-        $deleted = $this->repository->delete($user->id);
-
-        return $this->sendSuccess($deleted, __('api.success_delete', ['name' => $this->name]));
     }
 }
