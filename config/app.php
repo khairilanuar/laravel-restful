@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -136,6 +137,7 @@ return [
     */
 
     'providers' => [
+
         /*
          * Laravel Framework Service Providers...
          */
